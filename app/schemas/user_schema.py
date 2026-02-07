@@ -1,0 +1,9 @@
+from typing import Optional, Generic, TypeVar
+from pydantic import BaseModel
+
+T = TypeVar("T")
+
+class APIResponse(BaseModel):
+    status: int
+    message: str
+    data: Optional[T]
