@@ -9,7 +9,6 @@ from app.service.user_service import UserService
 from app.security.password import hash_password, verify_password
 from app.security.auth_service import AuthService
 from app.security.jwt import create_access_token, decode_token
-from app.core.config import SECRET_KEY
 
 app = FastAPI()
 
@@ -42,9 +41,6 @@ auth_service = AuthService(repo)
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 def get_current_user(token: str = Depends(oauth2_scheme)):
-    """
-    Decode token, find user from repo, return user DTO
-    """
     payload = decode_token(token)
     if payload is None:
         raise HTTPException(
