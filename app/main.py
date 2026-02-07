@@ -8,10 +8,13 @@ from app.schemas.user_schema import APIResponse
 from app.service.user_service import UserService
 from app.security.password import hash_password
 from app.security.auth_service import AuthService
+from app.core.config import SECRET_KEY
 
 app = FastAPI()
 
 hashed_password = hash_password("12345678")
+print(f"SECRET KEY {SECRET_KEY}")
+
 
 # seed data
 seed_users: List[UserDTO] = [
